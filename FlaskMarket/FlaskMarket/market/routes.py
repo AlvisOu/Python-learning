@@ -10,7 +10,7 @@ def home_page():
     return render_template('home.html')
 
 @app.route("/market", methods=['GET', 'POST'])
-@login_required
+@login_required # Not allowed to view market page if not logged in
 def market_page():
     purchase_form = PurchaseItemForm()
     selling_form = SellItemForm()

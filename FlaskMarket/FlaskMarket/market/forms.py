@@ -5,6 +5,7 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from market.models import User
 
+# Inheriting FlaskForm
 class RegisterForm(FlaskForm):
 
     # FlaskForm class automatically looks for functions that begin with validate_ and checks the field that comes after

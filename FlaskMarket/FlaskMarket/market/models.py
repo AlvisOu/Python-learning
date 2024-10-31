@@ -1,16 +1,20 @@
 from market import db, bcrypt, login_manager
 from flask_login import UserMixin
 
+# To use login_manager, we must include the following function adn 4 other functions
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+# Those 4 other functions can be inherited from the UserMixin class
 class User(db.Model, UserMixin):
+
     id = db.Column(db.Integer(), primary_key=True)
     username = db.Column(db.String(length=30), nullable=False, unique=True)
     email_address = db.Column(db.String(length=50), nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False) 
     # hash as we want to store our encrypted password, length=60 is usually the length 
+
     budget = db.Column(db.Integer(), nullable=False, default=1000)
     items = db.relationship('Item', backref='owned_user', lazy=True) 
     # lazy=True so sqlalchemy grabs all objects in one go
