@@ -7,7 +7,7 @@ group = 'inventory-group'
 try:
     redis.xgroup_create(key, group)
 except:
-    print('Group already exists')\
+    print('Group already exists')
     
 while True:
     try:
